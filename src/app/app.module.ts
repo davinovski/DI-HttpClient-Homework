@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { IndexElementsComponent } from './index-elements/index-elements.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogresponseInterceptor } from './logresponse.interceptor'
+import { HttpService } from './http.service';
 
 @NgModule({
   declarations: [
@@ -17,11 +18,14 @@ import { LogresponseInterceptor } from './logresponse.interceptor'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [{
+  providers: [
+    HttpService,
+    {
     provide : HTTP_INTERCEPTORS,
     useClass : LogresponseInterceptor,
     multi:true
-  }],
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
